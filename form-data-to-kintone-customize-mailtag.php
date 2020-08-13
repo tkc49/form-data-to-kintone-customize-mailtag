@@ -20,16 +20,22 @@ namespace FormDataToKintoneCustomizeMailtag;
 
 function kintone_form_text_customize_mailtag( $value, $cf7_send_data, $cf7_mail_tag ) {
 
-	preg_match_all( "|{(.*)}|U",
+	preg_match_all(
+		"|{(.*)}|U",
 		$cf7_mail_tag,
 		$out,
-		PREG_PATTERN_ORDER );
+		PREG_PATTERN_ORDER
+	);
 
 	if ( ! empty( $out[1] ) ) {
 
 		foreach ( $out[1] as $key => $split_mial_tag ) {
-			$cf7_value    = $cf7_send_data[ $split_mial_tag ];
-			$cf7_mail_tag = str_replace( $out[0][ $key ], $cf7_value, $cf7_mail_tag );
+			$cf7_value = $cf7_send_data[ $split_mial_tag ];
+			if ( is_array( $cf7_value ) ) {
+				$cf7_mail_tag = str_replace( $out[0][ $key ], $cf7_value[0], $cf7_mail_tag );
+			} else {
+				$cf7_mail_tag = str_replace( $out[0][ $key ], $cf7_value, $cf7_mail_tag );
+			}
 		}
 
 		$value = $cf7_mail_tag;
