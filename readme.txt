@@ -4,7 +4,7 @@ Donate link: https://example.com/
 Tags: comments, spam
 Requires at least: 4.5
 Tested up to: 4.9.8
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 0.1.1 =
+* Added handling to set a blank value when $cf7_send_data[ $split_mail_tag ] is undefined
 
 = 1.0 =
 * A change since the previous version.
